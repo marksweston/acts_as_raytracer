@@ -3,14 +3,14 @@ require 'pry'
 require 'matrix'
 
 require_relative 'acts_as_raytracer/position'
-require_relative 'acts_as_raytracer/scene'
+require_relative 'acts_as_raytracer/world'
 require_relative 'acts_as_raytracer/film'
 require_relative 'acts_as_raytracer/camera'
 require_relative 'acts_as_raytracer/ray'
 require_relative 'acts_as_raytracer/raster'
 require_relative 'acts_as_raytracer/pixel'
 
-scene = Scene.new(objects: [])
+world = World.new(objects: [])
 
 camera = Camera.new(
   position: Position[0,0,0],
@@ -18,6 +18,6 @@ camera = Camera.new(
   y_resolution: 100
 )
 
-camera.shoot!(scene: scene)
+camera.shoot!(world: world)
 
 puts "goodbye"

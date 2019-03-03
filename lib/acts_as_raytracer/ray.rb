@@ -7,8 +7,4 @@ class Ray
 
   attr_reader :origin, :direction, :position_on_film
   attr_accessor :colour
-
-  def trace!(scene:)
-    self.colour = [0, 0, 255]
-  end
 end

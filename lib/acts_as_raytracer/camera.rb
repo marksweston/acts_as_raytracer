@@ -9,10 +9,10 @@ class Camera
   attr_reader :position, :film, :x_resolution, :y_resolution
   attr_accessor :rays
 
-  def shoot!(scene:)
+  def shoot!(world:)
     self.rays = film.get_primary_rays(origin: position, focal_length: focal_length)
     rays.each do |ray|
-      ray.trace!(scene: scene)
+      ray.colour = world.trace(ray: ray)
     end
     film.develop!(rays)
   end
