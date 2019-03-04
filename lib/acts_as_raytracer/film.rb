@@ -28,7 +28,8 @@ class Film
   def map_pixel_to_film_position(pixel)
     return Position[
       (pixel.x + 0.5) / raster.width * width - (width / 2),
-      (pixel.y + 0.5) / raster.height * height - (height / 2),
+      # y-axis is being reversed from top origin in raster space to bottom origin in world space
+      (height - (pixel.y + 0.5) / raster.height * height) - (height / 2),
       0
     ]
   end
@@ -36,7 +37,8 @@ class Film
   def map_film_position_to_pixel(film_position)
     return Pixel.new(
       x: ((film_position.x + width / 2) * raster.width / width - 0.5).round,
-      y: ((film_position.y + height / 2) * raster.height / height - 0.5).round,
+      # again y-axis is being reversed from bottom origin in world space to top origin in raster space
+      y: (raster.height - 1) - ((film_position.y + height / 2) * raster.height / height - 0.5).round,
     )
   end
 

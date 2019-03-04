@@ -10,4 +10,8 @@ class Position
   end
 
   attr_reader :x, :y, :z
+
+  def to_v
+    return Vector[x, y, z]
+  end
 end
