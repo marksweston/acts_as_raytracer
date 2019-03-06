@@ -1,5 +1,5 @@
 class LightSource
-  def initialize(position:, intensity: [255, 255, 255])
+  def initialize(position:, intensity: Colour.new(red: 1, green: 1, blue: 1))
     @position = position
     @intensity = intensity
   end

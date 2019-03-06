@@ -19,7 +19,7 @@ class Film
   def develop!(rays)
     rays.each do |ray|
       pixel = map_film_position_to_pixel(ray.position_on_film)
-      pixel.set_colours(colour_array: ray.colour)
+      pixel.set_colours(colour_array: ray.colour.rgb)
       raster.set_pixel(pixel: pixel)
     end
     raster.save
