@@ -19,4 +19,12 @@ class Sphere
     t2 = (-b + Math.sqrt(discriminant)) / (2 * a)
     return [{:distance => t1, :object => self}, {:distance => t2, :object => self}]
   end
+
+  def normal_at(intersect:)
+    return (position.to_v - intersect.to_v).normalize
+  end
+
+  def reflect(incoming:, normal:)
+    return incoming - normal * 2 * incoming.dot(normal)
+  end
 end
