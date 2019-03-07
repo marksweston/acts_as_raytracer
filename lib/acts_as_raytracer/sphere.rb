@@ -21,7 +21,7 @@ class Sphere
   end
 
   def normal_at(intersect:)
-    return (position.to_v - intersect.to_v).normalize
+    return (intersect.to_v - position.to_v).normalize
   end
 
   def reflect(incoming:, normal:)

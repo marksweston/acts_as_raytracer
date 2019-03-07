@@ -52,4 +52,8 @@ class Colour
       (blue * 255).round.clamp(0,255)
     ]
   end
+
+  def to_s
+    return "red: #{red} - green: #{green} - blue: #{blue}"
+  end
 end

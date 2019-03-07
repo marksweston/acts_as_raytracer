@@ -18,7 +18,7 @@ class World
       effective_colour = intersections.first[:object].colour
       intersection_point = ray.position(distance: intersections.first[:distance])
       normal = intersections.first[:object].normal_at(intersect: intersection_point)
-      light_vector = (intersection_point.to_v - light.position.to_v).normalize
+      light_vector = (light.position.to_v - intersection_point.to_v).normalize
       ambient = effective_colour * light.ambient
       ​light_dot_normal = light_vector.dot(normal)
       if ​light_dot_normal < 0
