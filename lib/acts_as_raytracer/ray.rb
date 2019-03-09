@@ -1,5 +1,5 @@
 class Ray
-  def initialize(origin:, direction:, position_on_film:)
+  def initialize(origin:, direction:, position_on_film: nil)
     @origin = origin
     @direction = direction
     @position_on_film = position_on_film
@@ -15,5 +15,9 @@ class Ray
       origin.y + change_vector[1],
       origin.z + change_vector[2]
     ]
+  end
+
+  def to_s
+    return "origin: #{origin} - direction: #{direction}"
   end
 end

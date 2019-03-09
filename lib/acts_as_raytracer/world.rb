@@ -20,11 +20,12 @@ class World
       normal = intersections.first[:object].normal_at(intersect: intersection_point)
       light_vector = (light.position.to_v - intersection_point.to_v).normalize
       ambient = effective_colour * light.ambient
-      ​light_dot_normal = light_vector.dot(normal)
-      if ​light_dot_normal < 0
+      light_dot_normal = light_vector.dot(normal)
+      over_point = intersection_point.move(vector: 0.00001  * normal)
+      if light_dot_normal < 0 || point_in_shadow(over_point, light_vector)
         diffuse = Colour.new(red: 0, green: 0, blue: 0)
       else
-        diffuse = effective_colour * default_diffuse_reflection_factor * ​light_dot_normal
+        diffuse = effective_colour * default_diffuse_reflection_factor * light_dot_normal
       end
       return ambient + diffuse
     end
@@ -32,5 +33,13 @@ class World
 
   def default_diffuse_reflection_factor
     return 1
+  end
+
+  def point_in_shadow(point, light_vector)
+    shadow_ray = Ray.new(origin: point, direction: light_vector)
+    shadow_intersections = objects.map do |object|
+      object.intersect(ray: shadow_ray)
+    end.flatten.compact
+    return shadow_intersections.count > 0 && shadow_intersections.select{|int| int[:distance] > 0}.count > 0
   end
 end
