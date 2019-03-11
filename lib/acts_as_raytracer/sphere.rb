@@ -9,9 +9,10 @@ class Sphere
 
   def intersect(ray:)
     sphere_to_ray = ray.origin.to_v - position.to_v
-    a = ray.direction.dot ray.direction
-    b = 2 * ray.direction.dot(sphere_to_ray)
-    c = sphere_to_ray.dot(sphere_to_ray) - radius**2
+    binding.pry if ray.direction.is_a? RVec3
+    a = Vector.dot(ray.direction, ray.direction)
+    b = 2 * Vector.dot(ray.direction, sphere_to_ray)
+    c = Vector.dot(sphere_to_ray, sphere_to_ray) - radius**2
     discriminant = b**2 - 4 * a * c
     return nil if discriminant < 0
 
@@ -21,10 +22,10 @@ class Sphere
   end
 
   def normal_at(intersect:)
-    return (intersect.to_v - position.to_v).normalize
+    return (intersect.to_v - position.to_v).normalise!
   end
 
   def reflect(incoming:, normal:)
-    return incoming - normal * 2 * incoming.dot(normal)
+    return incoming - normal * 2 * Vector.dot(incoming, normal)
   end
 end

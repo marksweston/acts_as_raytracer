@@ -12,7 +12,7 @@ class Position
   attr_reader :x, :y, :z
 
   def to_v
-    return Vector[x, y, z]
+    return Vector.new(x, y, z)
   end
 
   def move(vector:)

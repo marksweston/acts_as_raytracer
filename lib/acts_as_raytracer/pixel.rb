@@ -1,6 +1,6 @@
 class Pixel
   def initialize(position: nil, x: nil, y: nil, red: 0, green: 0, blue: 0)
-    raise "requires either a Position or co-ordinates" if position.nil? && (x.nil? || y.nil?)
+    raise "requires either a Point or co-ordinates" if position.nil? && (x.nil? || y.nil?)
 
     @x = position&.x || x
     @y = position&.y || y

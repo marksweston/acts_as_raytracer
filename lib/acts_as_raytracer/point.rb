@@ -1,0 +1,20 @@
+class Point
+  extend Forwardable
+
+  def initialize(x, y, z)
+    @vec = RVec3.new(x, y, z)
+  end
+
+  def_delegators :@vec, :x, :y, :z, :to_s
+
+  def to_v
+    return Vector.new(@vec.x, @vec.y, @vec.z)
+  end
+
+  def move(vector:)
+    @vec.x = @vec.x + vector.x
+    @vec.y = @vec.y + vector.y
+    @vec.z = @vec.z + vector.z
+    return self
+  end
+end

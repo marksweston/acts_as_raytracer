@@ -18,10 +18,10 @@ class World
       effective_colour = intersections.first[:object].colour
       intersection_point = ray.position(distance: intersections.first[:distance])
       normal = intersections.first[:object].normal_at(intersect: intersection_point)
-      light_vector = (light.position.to_v - intersection_point.to_v).normalize
+      light_vector = (light.position.to_v - intersection_point.to_v).normalise!
       ambient = effective_colour * light.ambient
-      light_dot_normal = light_vector.dot(normal)
-      over_point = intersection_point.move(vector: 0.00001  * normal)
+      light_dot_normal = Vector.dot(light_vector, normal)
+      over_point = intersection_point.move(vector: normal * 0.00001)
       if light_dot_normal < 0 || point_in_shadow(over_point, light_vector)
         diffuse = Colour.new(red: 0, green: 0, blue: 0)
       else

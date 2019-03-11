@@ -10,11 +10,11 @@ class Ray
 
   def position(distance:)
     change_vector = direction * distance
-    return Position[
-      origin.x + change_vector[0],
-      origin.y + change_vector[1],
-      origin.z + change_vector[2]
-    ]
+    return Point.new(
+      origin.x + change_vector.x,
+      origin.y + change_vector.y,
+      origin.z + change_vector.z
+    )
   end
 
   def to_s

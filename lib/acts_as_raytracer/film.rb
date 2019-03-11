@@ -10,7 +10,7 @@ class Film
       pixel_position = map_pixel_to_film_position(pixel)
       Ray.new(
           origin: origin,
-          direction: Vector[pixel_position.x, pixel_position.y, origin.z + focal_length].normalize,
+          direction: Vector.new(pixel_position.x, pixel_position.y, origin.z + focal_length).normalise!,
           position_on_film: pixel_position
       )
     end
@@ -26,12 +26,12 @@ class Film
   end
 
   def map_pixel_to_film_position(pixel)
-    return Position[
+    return Point.new(
       (pixel.x + 0.5) / raster.width * width - (width / 2),
       # y-axis is being reversed from top origin in raster space to bottom origin in world space
       (height - (pixel.y + 0.5) / raster.height * height) - (height / 2),
       0
-    ]
+    )
   end
 
   def map_film_position_to_pixel(film_position)
