@@ -28,4 +28,12 @@ class Vector
   def *(scalar)
     return Vector.new((@vec * scalar).x, (@vec * scalar).y, (@vec * scalar).z)
   end
+
+  def weighting
+    return 0
+  end
+
+  def ==(other_vector)
+    return @vec == other_vector.to_v
+  end
 end
