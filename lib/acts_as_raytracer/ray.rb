@@ -8,8 +8,8 @@ class Ray
   attr_reader :origin, :direction, :position_on_film
   attr_accessor :colour
 
-  def position(distance:)
-    change_vector = direction * distance
+  def at(t:)
+    change_vector = direction * t
     return Point.new(
       origin.x + change_vector.x,
       origin.y + change_vector.y,
