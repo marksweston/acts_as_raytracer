@@ -1,5 +1,5 @@
-module Transform
-  class Scaling
+class Transform
+  class Scaling < Transform
     def self.new_from_matrix(matrix)
       scaler = allocate
       scaler.initialize_from_matrix(matrix)
@@ -22,6 +22,20 @@ module Transform
     attr_accessor :transform_matrix
 
     def *(point_or_vector)
+      #FIXME
+      case point_or_vector
+        when Point, Vector
+          return transform_point_or_vector(point_or_vector)
+        when Translation, Scaling
+          return nil
+      end
+    end
+
+    def inverse
+      return @inverse ||= Transform::Scaling.new_from_matrix(transform_matrix.getInverse)
+    end
+
+    private def transform_point_or_vector(point_or_vector)
       transformable = RVec4.new(
           point_or_vector.x,
           point_or_vector.y,
@@ -34,10 +48,6 @@ module Transform
           result.y,
           result.z
       )
-    end
-
-    def inverse
-      return @inverse ||= Transform::Translation.new_from_matrix(transform_matrix.getInverse)
     end
   end
 end

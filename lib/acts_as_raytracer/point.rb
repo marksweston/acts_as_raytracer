@@ -25,8 +25,4 @@ class Point
   def ==(other_point)
     return @vec.x == other_point.x && @vec.y == other_point.y && @vec.z == other_point.z
   end
-
-  def inverse
-
-  end
 end

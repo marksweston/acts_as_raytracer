@@ -1,5 +1,5 @@
-module Transform
-  class Translation
+class Transform
+  class Translation < Transform
     def self.new_from_matrix(matrix)
       translation = allocate
       translation.initialize_from_matrix(matrix)
@@ -22,6 +22,8 @@ module Transform
     attr_accessor :transform_matrix
 
     def *(point_or_vector)
+      return point_or_vector if point_or_vector.is_a? Vector
+
       transformable = RVec4.new(
           point_or_vector.x,
           point_or_vector.y,

@@ -5,7 +5,7 @@ class Vector
     @vec = RVec3.new(x, y, z)
   end
 
-  def self.dot(vector_1, vector_2)
+  def self.dot_product(vector_1, vector_2)
     return RVec3.dot(vector_1.to_v, vector_2.to_v)
   end
 

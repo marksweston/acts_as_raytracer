@@ -17,7 +17,7 @@ class Plane
   end
 
   def reflect(incoming:, normal:)
-    return incoming - normal * 2 * Vector.dot(incoming, normal)
+    return incoming - normal * 2 * Vector.dot_product(incoming, normal)
   end
 
   def y

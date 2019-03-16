@@ -16,6 +16,8 @@ require_relative 'acts_as_raytracer/colour'
 require_relative 'acts_as_raytracer/plane'
 require_relative 'acts_as_raytracer/point'
 require_relative 'acts_as_raytracer/vector'
+require_relative 'acts_as_raytracer/transform'
 require_relative 'acts_as_raytracer/translation'
 require_relative 'acts_as_raytracer/scaling'
+require_relative 'acts_as_raytracer/identity'
 

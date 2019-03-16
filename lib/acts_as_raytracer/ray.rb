@@ -17,6 +17,14 @@ class Ray
     )
   end
 
+  def transform(matrix:)
+    return Ray.new(
+      origin: matrix * self.origin,
+      direction: matrix * self.direction,
+      position_on_film: self.position_on_film
+    )
+  end
+
   def to_s
     return "origin: #{origin} - direction: #{direction}"
   end
