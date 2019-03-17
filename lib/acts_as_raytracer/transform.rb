@@ -5,13 +5,12 @@ class Transform
     @transform_matrix = matrix
   end
 
-  def *(point_or_vector)
-    #FIXME
-    case point_or_vector
+  def *(multiplicand)
+    case multiplicand
     when Point, Vector
-      return transform_point_or_vector(point_or_vector)
-    when Translation, Scaling
-      return nil
+      return transform_point_or_vector(multiplicand)
+    when Transform
+      return self.class.new_from_matrix(self.transform_matrix * multiplicand.transform_matrix)
     end
   end
 
