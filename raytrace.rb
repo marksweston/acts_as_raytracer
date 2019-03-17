@@ -13,8 +13,8 @@ world = World.new(objects: [
 
 camera = Camera.new(
     position: Point.new(0,0,0),
-    x_resolution: 1000,
-    y_resolution: 1000
+    x_resolution: 400,
+    y_resolution: 400
 )
 
 camera.shoot!(world: world)
