@@ -4,10 +4,13 @@ world = World.new(objects: [
     Plane.new(colour: Colour.new(red: 0.8, green: 0.7, blue: 0.7)),
     Sphere.new(colour: Colour.new(red: 1, green: 0, blue: 0))
           .scale(x: 1.5, y: 0.2, z: 1.5)
-          .translate(x: 1.5, y: 0.5, z: 4),
+          .rotate(axis: :x, angle: -0.125 * Math::PI)
+          .rotate(axis: :z, angle: -0.2 * Math::PI)
+          .translate(x: 1.75, y: 0.8, z: 4),
     Sphere.new(colour: Colour.new(red: 0, green: 1, blue: 0))
-          .scale(x: 0.25, y: 0.4, z: 0.25)
-          .translate(x: -0.2, y: 0.3, z: 1),
+          .scale(x: 1, y: 1.6, z: 1)
+          .rotate(axis: :z, angle: 0.125 * Math::PI)
+          .translate(x: -0.2, y: 1.6, z: 4),
     ],
     light: LightSource.new(position: Point.new(8, 3, -5)))
 

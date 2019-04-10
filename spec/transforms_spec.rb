@@ -27,8 +27,36 @@ RSpec.describe "Transforms" do
       expect(transform * start_vector).to eq end_vector
     end
 
-    it "multiplying by its inverse returns the origin vector" do
+    it "multiplying by its inverse returns the original vector" do
       expect(transform.inverse * end_vector).to eq start_vector
+    end
+  end
+
+  describe "Rotating" do
+    it "rotates around the x axis" do
+      point = Point.new(0, 1, 0)
+      one_eigth_rotation = Transform::Rotation.new(axis: :x, angle: 0.25 * Math::PI)
+      one_quarter_rotation = Transform::Rotation.new(axis: :x, angle: 0.5 * Math::PI)
+      expect(one_quarter_rotation * point).to eq Point.new(0, 0, 1)
+      expect(one_eigth_rotation * point).to eq Point.new(0, (Math.sqrt(2) / 2).round(12), (Math.sqrt(2) / 2).round(12))
+    end
+
+    it "rotates around the y axis" do
+      point = Point.new(0, 0, 1)
+      one_eigth_rotation = Transform::Rotation.new(axis: :y, angle: 0.25 * Math::PI)
+      one_quarter_rotation = Transform::Rotation.new(axis: :y, angle: 0.5 * Math::PI)
+      expect(one_quarter_rotation * point).to eq Point.new(1, 0, 0)
+      expect(one_eigth_rotation * point).to eq Point.new((Math.sqrt(2) / 2).round(12),0, (Math.sqrt(2) / 2).round(12))
+    end
+
+    it "rotates around the z axis" do
+      point = Point.new(0, 1, 0)
+      one_eigth_rotation = Transform::Rotation.new(axis: :z, angle: 0.25 * Math::PI)
+      one_quarter_rotation = Transform::Rotation.new(axis: :z, angle: 0.5 * Math::PI)
+      expect(one_quarter_rotation * point).to eq Point.new(-1, 0, 0)
+      expect(one_eigth_rotation * point).to eq Point.new(-(Math.sqrt(2) / 2).round(12), (Math.sqrt(2) / 2).round(12), 0)
+      point = Point.new(1, 0, 0)
+      expect(one_quarter_rotation * point).to eq Point.new( 0, 1, 0)
     end
   end
 end

@@ -30,6 +30,11 @@ class Sphere
     return self
   end
 
+  def rotate(axis:, angle: )
+    self.transforms << Transform::Rotation.new(axis: axis, angle: angle)
+    return self
+  end
+
   def intersect(ray:)
     ray_in_object_space = ray.transform(matrix: combined_transform.inverse)
     sphere_to_ray = ray_in_object_space.origin.to_v - object_space_origin.to_v
