@@ -21,5 +21,6 @@ require_relative 'acts_as_raytracer/translation'
 require_relative 'acts_as_raytracer/scaling'
 require_relative 'acts_as_raytracer/identity'
 require_relative 'acts_as_raytracer/rotation'
+require_relative 'acts_as_raytracer/skew'
 
 

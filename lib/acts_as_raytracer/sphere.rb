@@ -35,6 +35,11 @@ class Sphere
     return self
   end
 
+  def skew(x_y: 0, x_z: 0, y_x: 0, y_z: 0, z_x: 0, z_y: 0)
+    self.transforms << Transform::Skew.new(x_y: x_y, x_z: x_z, y_x: y_x, y_z: y_z, z_x: z_x, z_y: z_y)
+    return self
+  end
+
   def intersect(ray:)
     ray_in_object_space = ray.transform(matrix: combined_transform.inverse)
     sphere_to_ray = ray_in_object_space.origin.to_v - object_space_origin.to_v

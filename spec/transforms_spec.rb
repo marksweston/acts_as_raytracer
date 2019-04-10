@@ -59,4 +59,42 @@ RSpec.describe "Transforms" do
       expect(one_quarter_rotation * point).to eq Point.new( 0, 1, 0)
     end
   end
+
+  describe "skewing" do
+    it "can skew x in proportion to y" do
+      skew = Transform::Skew.new(x_y: 1)
+      point = Point.new(2, 3, 4)
+      expect(skew * point).to eq Point.new(5, 3, 4)
+    end
+
+    it "can skew x in proportion to z" do
+      skew = Transform::Skew.new(x_z: 1)
+      point = Point.new(2, 3, 4)
+      expect(skew * point).to eq Point.new(6, 3, 4)
+    end
+
+    it "can skew y in proportion to x" do
+      skew = Transform::Skew.new(y_x: 1)
+      point = Point.new(2, 3, 4)
+      expect(skew * point).to eq Point.new(2, 5, 4)
+    end
+
+    it "can skew y in proportion to z" do
+      skew = Transform::Skew.new(y_z: 1)
+      point = Point.new(2, 3, 4)
+      expect(skew * point).to eq Point.new(2, 7, 4)
+    end
+
+    it "can skew z in proportion to x" do
+      skew = Transform::Skew.new(z_x: 1)
+      point = Point.new(2, 3, 4)
+      expect(skew * point).to eq Point.new(2, 3, 6)
+    end
+
+    it "can skew z in proportion to y" do
+      skew = Transform::Skew.new(z_y: 1)
+      point = Point.new(2, 3, 4)
+      expect(skew * point).to eq Point.new(2, 3, 7)
+    end
+  end
 end
