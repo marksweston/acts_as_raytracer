@@ -15,7 +15,7 @@ class Transform
   private def transform_matrix_for(axis, angle)
     return {
         :x => RMtx4.new(
-            1, 0,       0,           0,
+            1, 0,           0,          0,
             0, cos(angle), -sin(angle), 0,
             0, sin(angle), cos(angle),  0,
             0, 0,          0,           1

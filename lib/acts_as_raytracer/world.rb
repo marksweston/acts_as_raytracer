@@ -13,11 +13,12 @@ class World
     end.flatten.compact
     intersections.sort!{ |first_hit, second_hit| first_hit[:distance] <=> second_hit[:distance] }
     if intersections.empty?
-      Colour.new(red: 0, green: 0, blue: 0)
+      return Colour.new(red: 0, green: 0, blue: 0)
     else
-      effective_colour = intersections.first[:object].colour
-      intersection_point = ray.at(t: intersections.first[:distance])
-      normal = intersections.first[:object].normal_at(intersect: intersection_point)
+      first_intersection = intersections.first
+      effective_colour = first_intersection[:object].colour
+      intersection_point = ray.at(t: first_intersection[:distance])
+      normal = first_intersection[:object].normal_at(intersect: intersection_point)
       light_vector = (light.position.to_v - intersection_point.to_v).normalise!
       ambient = effective_colour * light.ambient
       light_dot_normal = Vector.dot_product(light_vector, normal)
