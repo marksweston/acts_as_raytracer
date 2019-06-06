@@ -36,4 +36,8 @@ class Vector
   def ==(other_vector)
     return @vec == other_vector.to_v
   end
+
+  def transform(matrix:)
+    return matrix * self
+  end
 end
