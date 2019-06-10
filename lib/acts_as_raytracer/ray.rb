@@ -1,7 +1,7 @@
 class Ray
   def initialize(origin:, direction:, position_on_film: nil)
     @origin = origin
-    @direction = direction
+    @direction = direction.normalise!
     @position_on_film = position_on_film
   end
 

@@ -14,7 +14,7 @@ class Sphere < Shape
 
     t1 = (-b - Math.sqrt(discriminant)) / (2 * a)
     t2 = (-b + Math.sqrt(discriminant)) / (2 * a)
-    return [{:distance => t1, :object => self}, {:distance => t2, :object => self}]
+    return [{:t => t1, :object => self}, {:t => t2, :object => self}]
   end
 
   def normal_at(intersect:)

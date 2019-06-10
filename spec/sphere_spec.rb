@@ -5,8 +5,8 @@ RSpec.describe Sphere do
       sphere = Sphere.new(colour: Colour.new(red: 0, green: 0, blue: 0))
                      .scale(x: 2, y: 2, z: 2)
       intersections = sphere.intersect ray: ray
-      expect(intersections.first[:distance]).to eq 3
-      expect(intersections.last[:distance]).to eq 7
+      expect(intersections.first[:t]).to eq 3
+      expect(intersections.last[:t]).to eq 7
     end
 
     it "should not change the origin ray" do

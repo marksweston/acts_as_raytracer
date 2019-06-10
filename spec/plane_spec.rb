@@ -15,11 +15,18 @@ RSpec.describe Plane do
     it "intersects from above" do
       ray = Ray.new(origin: Point.new(0,1, 0), direction: Vector.new(0, -1, 1))
       expect(plane.intersect(ray: ray).count).to eq 1
+      expect(plane.intersect(ray: ray).first[:t]).to eq 1
     end
 
     it "intersects from below" do
       ray = Ray.new(origin: Point.new(0,-1, 0), direction: Vector.new(0, 1, 1))
       expect(plane.intersect(ray: ray).count).to eq 1
+      expect(plane.intersect(ray: ray).first[:t]).to eq 1
+    end
+
+    it "doesn't intersect when the ray is going away" do
+      ray = Ray.new(origin: Point.new(0,1, 0), direction: Vector.new(0, 1, 1))
+      expect(plane.intersect(ray: ray)).to be_nil
     end
   end
 end
