@@ -6,6 +6,12 @@ RSpec.describe Colour do
     expect(colour.blue).to eq 1.7
   end
 
+  describe "built-in colour shortcuts" do
+    it "lets me create a black without all that hassle with parameters" do
+      expect(Colour.black).to eq Colour.new(red: 0, green: 0, blue: 0)
+    end
+  end
+
   describe "adding colours" do
     it "adds each colour component separately" do
       colour_1 = Colour.new(red: 0.9, green: 0.6, blue: 0.75)

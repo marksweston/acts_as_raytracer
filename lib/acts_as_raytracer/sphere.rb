@@ -10,11 +10,14 @@ class Sphere < Shape
     b = 2 * Vector.dot_product(object_space(ray).direction, sphere_to_ray)
     c = Vector.dot_product(sphere_to_ray, sphere_to_ray) - unit_radius_squared
     discriminant = b**2 - 4 * a * c
-    return nil if discriminant < 0
+    return [] if discriminant < 0
 
     t1 = (-b - Math.sqrt(discriminant)) / (2 * a)
     t2 = (-b + Math.sqrt(discriminant)) / (2 * a)
-    return [{:t => t1, :object => self}, {:t => t2, :object => self}]
+    return [
+        Intersection.new(t: t1, object: self),
+        Intersection.new(t: t2, object: self)
+    ]
   end
 
   def normal_at(intersect:)

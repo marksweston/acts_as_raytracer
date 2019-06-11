@@ -1,7 +1,7 @@
 class Ray
   def initialize(origin:, direction:, position_on_film: nil)
     @origin = origin
-    @direction = direction.normalise!
+    @direction = direction
     @position_on_film = position_on_film
   end
 
@@ -27,5 +27,12 @@ class Ray
 
   def to_s
     return "origin: #{origin} - direction: #{direction}"
+  end
+
+  def trace(objects:)
+    intersections = objects.map do |object|
+      object.intersect(ray: self)
+    end.flatten.compact
+    return intersections.sort.select{|intersection| intersection.t >= 0}
   end
 end

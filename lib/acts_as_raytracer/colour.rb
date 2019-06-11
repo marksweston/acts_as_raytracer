@@ -1,4 +1,8 @@
 class Colour
+  def self.black
+    return new(red: 0, green: 0, blue: 0)
+  end
+
   def initialize(red:, green:, blue:)
     @red = red
     @green = green

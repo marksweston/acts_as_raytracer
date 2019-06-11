@@ -3,7 +3,11 @@ class Plane < Shape
     return nil if object_space(ray).direction.y.round(12).zero?
     t = (-object_space(ray).origin.y) / object_space(ray).direction.y
 
-    return [{:t => t , :object => self}] if t > 0
+    if t > 0
+      return [Intersection.new(t: t, object: self)]
+    else
+      return []
+    end
   end
 
   def normal_at(intersect:)

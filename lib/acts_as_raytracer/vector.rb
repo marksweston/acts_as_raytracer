@@ -40,4 +40,8 @@ class Vector
   def transform(matrix:)
     return matrix * self
   end
+
+  def length
+    return @vec.getLength
+  end
 end

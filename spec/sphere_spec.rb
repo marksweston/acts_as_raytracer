@@ -2,17 +2,15 @@ RSpec.describe Sphere do
   describe "testing whether rays #intersect this sphere" do
     it "should intersect" do
       ray = Ray.new(origin: Point.new(0, 0, -5), direction: Vector.new(0, 0, 1))
-      sphere = Sphere.new(colour: Colour.new(red: 0, green: 0, blue: 0))
-                     .scale(x: 2, y: 2, z: 2)
+      sphere = Sphere.new.scale(x: 2, y: 2, z: 2)
       intersections = sphere.intersect ray: ray
-      expect(intersections.first[:t]).to eq 3
-      expect(intersections.last[:t]).to eq 7
+      expect(intersections.first.t).to eq 3
+      expect(intersections.last.t).to eq 7
     end
 
     it "should not change the origin ray" do
       ray = Ray.new(origin: Point.new(0, 0, -5), direction: Vector.new(0, 0, 1))
-      sphere = Sphere.new(colour: Colour.new(red: 0, green: 0, blue: 0))
-                   .scale(x: 2, y: 2, z: 2)
+      sphere = Sphere.new.scale(x: 2, y: 2, z: 2)
       intersections = sphere.intersect ray: ray
       expect(ray.origin).to eq Point.new(0, 0, -5)
       expect(ray.direction).to eq Vector.new(0, 0, 1)
