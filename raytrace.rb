@@ -20,7 +20,7 @@ world = World.new(
             .skew(x_y: 0.75)
             .translate(x: 0, y: 1, z: 3),
     ],
-    light: LightSource.new(position: Point.new( 3 , 2, -2))
+    light: LightSource.new(position: Point.new( -2 , 2, -2))
 )
 
 camera = Camera.new(
@@ -30,3 +30,4 @@ camera = Camera.new(
 )
 
 camera.shoot!(world: world)
+

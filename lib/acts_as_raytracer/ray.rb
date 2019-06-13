@@ -33,6 +33,7 @@ class Ray
     intersections = objects.map do |object|
       object.intersect(ray: self)
     end.flatten.compact
-    return intersections.sort.select{|intersection| intersection.t >= 0}
+    # making sure that floating point errors don't give us an intersection point that's *below* the surface of the object
+    return intersections.sort.select{|intersection| intersection.t > 10**-epsilon}
   end
 end
