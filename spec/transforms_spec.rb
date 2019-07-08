@@ -38,7 +38,7 @@ RSpec.describe "Transforms" do
       one_eigth_rotation = Transform::Rotation.new(axis: :x, angle: 0.25 * Math::PI)
       one_quarter_rotation = Transform::Rotation.new(axis: :x, angle: 0.5 * Math::PI)
       expect(one_quarter_rotation * point).to eq Point.new(0, 0, 1)
-      expect(one_eigth_rotation * point).to eq Point.new(0, (Math.sqrt(2) / 2).round(12), (Math.sqrt(2) / 2).round(12))
+      expect(one_eigth_rotation * point).to eq Point.new(0, (Math.sqrt(2) / 2).round(epsilon), (Math.sqrt(2) / 2).round(epsilon))
     end
 
     it "rotates around the y axis" do
@@ -46,7 +46,7 @@ RSpec.describe "Transforms" do
       one_eigth_rotation = Transform::Rotation.new(axis: :y, angle: 0.25 * Math::PI)
       one_quarter_rotation = Transform::Rotation.new(axis: :y, angle: 0.5 * Math::PI)
       expect(one_quarter_rotation * point).to eq Point.new(1, 0, 0)
-      expect(one_eigth_rotation * point).to eq Point.new((Math.sqrt(2) / 2).round(12),0, (Math.sqrt(2) / 2).round(12))
+      expect(one_eigth_rotation * point).to eq Point.new((Math.sqrt(2) / 2).round(epsilon),0, (Math.sqrt(2) / 2).round(epsilon))
     end
 
     it "rotates around the z axis" do
@@ -54,7 +54,7 @@ RSpec.describe "Transforms" do
       one_eigth_rotation = Transform::Rotation.new(axis: :z, angle: 0.25 * Math::PI)
       one_quarter_rotation = Transform::Rotation.new(axis: :z, angle: 0.5 * Math::PI)
       expect(one_quarter_rotation * point).to eq Point.new(-1, 0, 0)
-      expect(one_eigth_rotation * point).to eq Point.new(-(Math.sqrt(2) / 2).round(12), (Math.sqrt(2) / 2).round(12), 0)
+      expect(one_eigth_rotation * point).to eq Point.new(-(Math.sqrt(2) / 2).round(epsilon), (Math.sqrt(2) / 2).round(epsilon), 0)
       point = Point.new(1, 0, 0)
       expect(one_quarter_rotation * point).to eq Point.new( 0, 1, 0)
     end

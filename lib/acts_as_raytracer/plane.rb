@@ -1,6 +1,7 @@
 class Plane < Shape
   def intersect(ray:)
-    return nil if object_space(ray).direction.y.round(12).zero?
+    return [] if object_space(ray).direction.y.round(epsilon).zero?
+
     t = (-object_space(ray).origin.y) / object_space(ray).direction.y
 
     if t > 0

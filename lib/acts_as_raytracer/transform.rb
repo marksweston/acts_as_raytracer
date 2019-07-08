@@ -31,9 +31,9 @@ class Transform
     )
     result = transformable.transform(transform_matrix)
     return point_or_vector.class.new(
-        result.x.round(12),
-        result.y.round(12),
-        result.z.round(12)
+        result.x.round(epsilon),
+        result.y.round(epsilon),
+        result.z.round(epsilon)
     )
   end
 end

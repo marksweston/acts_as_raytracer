@@ -11,7 +11,7 @@ class Point
     return Vector.new(@vec.x, @vec.y, @vec.z)
   end
 
-  def move(vector:)
+  def move!(vector:)
     @vec.x = @vec.x + vector.x
     @vec.y = @vec.y + vector.y
     @vec.z = @vec.z + vector.z

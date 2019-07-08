@@ -4,6 +4,10 @@ require 'forwardable'
 require 'rmath3d/rmath3d'
 include RMath3D
 
+def epsilon
+  return 11
+end
+
 require_relative 'acts_as_raytracer/world'
 require_relative 'acts_as_raytracer/film'
 require_relative 'acts_as_raytracer/camera'

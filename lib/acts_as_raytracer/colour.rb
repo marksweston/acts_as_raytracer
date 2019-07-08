@@ -12,9 +12,9 @@ class Colour
   attr_reader :red, :green, :blue
 
   def ==(other_colour)
-    red.round(12) == other_colour.red.round(12) and
-    green.round(12) == other_colour.green.round(12) and
-    blue.round(12) == other_colour.blue.round(12)
+    red.round(epsilon) == other_colour.red.round(epsilon) and
+    green.round(epsilon) == other_colour.green.round(epsilon) and
+    blue.round(epsilon) == other_colour.blue.round(epsilon)
   end
 
   def +(other_colour)
