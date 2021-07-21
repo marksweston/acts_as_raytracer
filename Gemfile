@@ -8,4 +8,5 @@ gem "chunky_png"
 gem "pry"
 gem "pry-byebug", :platforms => :mri
 gem "rspec"
+gem "rmath3d_plain"
 gem "rmath3d"
