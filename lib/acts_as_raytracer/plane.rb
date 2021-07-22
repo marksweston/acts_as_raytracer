@@ -11,6 +11,6 @@ class Plane < Shape
   end
 
   def normal_at(intersect:)
-    return world_space(Vector.new(0, 1, 0)).normalise!
+    return world_space(Vector.new(0, 1, 0)).normalise
   end
 end

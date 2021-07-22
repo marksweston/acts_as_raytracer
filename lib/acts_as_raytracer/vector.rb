@@ -1,32 +1,26 @@
 class Vector
-  extend Forwardable
-
   def initialize(x, y, z)
-    @vec = RVec3.new(x, y, z)
+    @x = x
+    @y = y
+    @z = z
   end
 
-  def self.dot_product(vector_1, vector_2)
-    return RVec3.dot(vector_1.to_v, vector_2.to_v)
+  attr_accessor :x, :y, :z
+
+  def dot_product(other_vector)
+    return x * other_vector.x + y * other_vector.y + z * other_vector.z
   end
 
-  def_delegators :@vec, :x, :y, :z, :to_s
-
-  def to_v
-    return @vec
-  end
-
-  def normalise!
-    @vec.normalize!
-    return self
+  def normalise
+    return Vector.new(self.x / magnitude, self.y / magnitude, self.z / magnitude)
   end
 
   def -(other_vector)
-    new_vec = @vec - other_vector.to_v
-    return Vector.new(new_vec.x, new_vec.y, new_vec.z)
+    return Vector.new(x - other_vector.x, y - other_vector.y, z - other_vector.z)
   end
 
   def *(scalar)
-    return Vector.new((@vec * scalar).x, (@vec * scalar).y, (@vec * scalar).z)
+    return Vector.new(x * scalar, y * scalar, z * scalar)
   end
 
   def weighting
@@ -34,14 +28,14 @@ class Vector
   end
 
   def ==(other_vector)
-    return @vec == other_vector.to_v
+    return x == other_vector.x && y == other_vector.y && z == other_vector.z
   end
 
   def transform(matrix:)
     return matrix * self
   end
 
-  def length
-    return @vec.getLength
+  def magnitude
+    return Math.sqrt(x ** 2 + y ** 2 + z ** 2)
   end
 end

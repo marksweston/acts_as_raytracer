@@ -1,20 +1,20 @@
 class Point
-  extend Forwardable
-
   def initialize(x, y, z)
-    @vec = RVec3.new(x, y, z)
+    @x = x
+    @y = y
+    @z = z
   end
 
-  def_delegators :@vec, :x, :y, :z, :to_s
+  attr_accessor :x, :y, :z
 
   def to_v
-    return Vector.new(@vec.x, @vec.y, @vec.z)
+    return Vector.new(x, y, z)
   end
 
   def move!(vector:)
-    @vec.x = @vec.x + vector.x
-    @vec.y = @vec.y + vector.y
-    @vec.z = @vec.z + vector.z
+    self.x = self.x + vector.x
+    self.y = self.y + vector.y
+    self.z = self.z + vector.z
     return self
   end
 
@@ -23,7 +23,7 @@ class Point
   end
 
   def ==(other_point)
-    return @vec.x == other_point.x && @vec.y == other_point.y && @vec.z == other_point.z
+    return x == other_point.x && y == other_point.y && z == other_point.z
   end
 
   def transform(matrix:)

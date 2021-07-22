@@ -1,5 +1,5 @@
 require 'chunky_png'
-require 'pry'
+require 'pry-byebug'
 require 'forwardable'
 require 'rmath3d/rmath3d'
 include RMath3D

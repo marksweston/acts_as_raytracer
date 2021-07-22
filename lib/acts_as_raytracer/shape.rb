@@ -45,6 +45,6 @@ class Shape
   end
 
   def reflect(incoming:, normal:)
-    return incoming - normal * 2 * Vector.dot_product(incoming, normal)
+    return incoming - normal * 2 * incoming.dot_product(normal)
   end
 end

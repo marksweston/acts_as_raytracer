@@ -17,11 +17,11 @@ class Light
     effective_colour = object.colour
 
     light_vector = (self.position.to_v - over_point.to_v)
-    distance_to_light = light_vector.length
+    distance_to_light = light_vector.magnitude
     in_shadow = point_in_shadow(over_point, light_vector, distance_to_light, world)
 
     ambient = effective_colour * self.ambient
-    light_dot_normal = Vector.dot_product(light_vector.normalise!, normal)
+    light_dot_normal = light_vector.normalise.dot_product(normal)
 
     if light_dot_normal < 0 || in_shadow
       diffuse = Colour.black
@@ -36,7 +36,7 @@ class Light
   end
 
   private def point_in_shadow(point, light_vector, distance_to_light, world)
-    shadow_ray = Ray.new(origin: point, direction: light_vector.normalise!)
+    shadow_ray = Ray.new(origin: point, direction: light_vector.normalise)
     shadow_intersections = shadow_ray.trace(objects: world.objects)
     return shadow_intersections.select{ |intersection| intersection.t < distance_to_light }.count > 0
   end
