@@ -15,17 +15,18 @@ world = World.new(
         Sphere.new(colour: Colour.new(red: 1, green: 0, blue: 0))
             .scale(x: 0.5, y: 0.2, z: 1.5)
             .translate(x: 1.5, y: 0.5, z: 3),
-        Sphere.new(colour: Colour.new(red: 0, green: 1, blue: 0))
-            .scale(x: 0.75, y: 0.75, z: 1)
+        Sphere.new(colour: Colour.new(red: 0, green: 1, blue: 0),
+                   material: Material.new(ambient: 0.15, diffuse_reflection: 0.9, specular_reflection: 0.5, shininess: 5))
+            .scale(x: 0.5, y: 0.75, z: 0.75)
             .translate(x: 0, y: 1, z: 3),
     ],
-    light: Light.new(position: Point.new(0 , 1, -2))
+    light: Light.new(position: Point.new(0 , 1, -10))
 )
 
 camera = Camera.new(
     position: Point.new(0,0,0),
-    x_resolution: 1000,
-    y_resolution: 1000
+    x_resolution: 300,
+    y_resolution: 300
 )
 
 camera.shoot!(world: world)

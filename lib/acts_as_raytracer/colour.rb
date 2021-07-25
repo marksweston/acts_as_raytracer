@@ -34,6 +34,7 @@ class Colour
   end
 
   def *(scalar)
+    binding.pry if scalar.nil?
     return Colour.new(
       red: red * scalar,
       green: green * scalar,

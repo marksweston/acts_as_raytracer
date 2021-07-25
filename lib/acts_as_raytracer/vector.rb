@@ -23,6 +23,10 @@ class Vector
     return Vector.new(x * scalar, y * scalar, z * scalar)
   end
 
+  def -@
+    return Vector.new(-x, -y, -z)
+  end
+
   def weighting
     return 0
   end

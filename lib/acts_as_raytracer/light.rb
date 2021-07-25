@@ -6,11 +6,7 @@ class Light
 
   attr_reader :position, :intensity
 
-  def ambient
-    return 0.15
-  end
-
-  def illuminate(object:, point:, world: )
+  def illuminate(ray:, object:, point:, world: )
     normal = object.normal_at(intersect: point)
     # move the intersection a small amount "up" to fix "acne" effects due to floating point rounding errors
     over_point = point.move!(vector: normal * 0.00000001)
@@ -18,24 +14,29 @@ class Light
 
     light_vector = (self.position.to_v - over_point.to_v)
     distance_to_light = light_vector.magnitude
-    in_shadow = point_in_shadow(over_point, light_vector, distance_to_light, world)
+    in_shadow = point_in_shadow?(over_point, light_vector, distance_to_light, world)
 
-    ambient = effective_colour * self.ambient
+    ambient = effective_colour * object.material.ambient
     light_dot_normal = light_vector.normalise.dot_product(normal)
 
     if light_dot_normal < 0 || in_shadow
       diffuse = Colour.black
+      specular = Colour.black
     else
-      diffuse = effective_colour * default_diffuse_reflection_factor * light_dot_normal
+      diffuse = effective_colour * object.material.diffuse_reflection * light_dot_normal
+      reflection = object.reflect(incoming_ray: ray.direction, intersection: point)
+      # reversing the ray direction otherwise the angle to the reflection is always > 90'
+      reflect_dot_ray = reflection.dot_product(-ray.direction)
+      if reflect_dot_ray <= 0
+        specular = Colour.black
+      else
+        specular = intensity * object.material.specular_reflection * (reflect_dot_ray ** object.material.shininess)
+      end
     end
-    return ambient + diffuse
+    return ambient + diffuse + specular
   end
 
-  private def default_diffuse_reflection_factor
-    return 1
-  end
-
-  private def point_in_shadow(point, light_vector, distance_to_light, world)
+  private def point_in_shadow?(point, light_vector, distance_to_light, world)
     shadow_ray = Ray.new(origin: point, direction: light_vector.normalise)
     shadow_intersections = shadow_ray.trace(objects: world.objects)
     return shadow_intersections.select{ |intersection| intersection.t < distance_to_light }.count > 0

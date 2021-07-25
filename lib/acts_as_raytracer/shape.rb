@@ -1,10 +1,20 @@
 class Shape
-  def initialize(colour: Colour.new(red: 0, green: 0, blue: 0))
+  def initialize(colour: Colour.new(red: 0, green: 0, blue: 0), material: nil)
     @colour = colour
     @transforms = []
+    @material = material
   end
 
   attr_reader :colour, :transforms
+
+  def self.default_material
+    return Material.new(
+      ambient: 0.15,
+      diffuse_reflection: 0.9,
+      specular_reflection: 0.9,
+      shininess: 20
+    )
+  end
 
   protected def object_space_origin
     return Point.new(0, 0, 0)
@@ -44,7 +54,12 @@ class Shape
     return ray_point_or_vector.transform(matrix: combined_transform.inverse.transpose)
   end
 
-  def reflect(incoming:, normal:)
-    return incoming - normal * 2 * incoming.dot_product(normal)
+  def reflect(incoming_ray:, intersection:)
+    normal = normal_at(intersect: intersection)
+    return incoming_ray - normal * 2 * incoming_ray.dot_product(normal)
+  end
+
+  def material
+    return @material ||= self.class.default_material
   end
 end

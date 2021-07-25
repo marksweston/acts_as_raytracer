@@ -7,6 +7,14 @@ RSpec.describe Vector do
     end
   end
 
+  describe "negating a vector to reverse the direction" do
+    it "returns a new vector which is the negative of the input" do
+      vector = Vector.new(-2, 0, 2)
+      reverse_of_vector = Vector.new(2, 0, -2)
+      expect(-vector).to eq reverse_of_vector
+    end
+  end
+
   describe "multiplying a vector by a scalar" do
     it "returns a new vector where each element has been multiplied by the scalar" do
       vector = Vector.new( -1, 0, 1)

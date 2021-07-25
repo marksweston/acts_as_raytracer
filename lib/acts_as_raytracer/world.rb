@@ -5,7 +5,6 @@ class World
   end
 
   attr_reader :objects, :light
-  attr_accessor :intersections
 
   def trace(ray:)
     intersections = ray.trace(objects: objects)
@@ -14,6 +13,7 @@ class World
     intersection_point = ray.at(t: intersections.first.t)
 
     return light.illuminate(
+        ray: ray,
         point: intersection_point,
         object: intersections.first.object,
         world: self

@@ -1,4 +1,13 @@
 class Plane < Shape
+  def self.default_material
+    return Material.new(
+      ambient: 0.30,
+      diffuse_reflection: 0.9,
+      specular_reflection: 0,
+      shininess: 0
+    )
+  end
+
   def intersect(ray:)
     return [] if object_space(ray).direction.y.round(epsilon).zero?
 
