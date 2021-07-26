@@ -9,9 +9,9 @@ class Film
     raster.pixels.map do |pixel|
       pixel_position = map_pixel_to_film_position(pixel)
       Ray.new(
-          origin: origin,
-          direction: Vector.new(pixel_position.x, pixel_position.y, origin.z + focal_length).normalise,
-          position_on_film: pixel_position
+        origin: origin,
+        vector: Vector.new(pixel_position.x, pixel_position.y, origin.z + focal_length).normalise,
+        position_on_film: pixel_position
       )
     end
   end

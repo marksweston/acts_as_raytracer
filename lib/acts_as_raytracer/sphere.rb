@@ -6,8 +6,8 @@ class Sphere < Shape
 
   def intersect(ray:)
     sphere_to_ray = object_space(ray).origin.to_v - object_space_origin.to_v
-    a = object_space(ray).direction.dot_product(object_space(ray).direction)
-    b = 2 * object_space(ray).direction.dot_product(sphere_to_ray)
+    a = object_space(ray).vector.dot_product(object_space(ray).vector)
+    b = 2 * object_space(ray).vector.dot_product(sphere_to_ray)
     c = sphere_to_ray.dot_product(sphere_to_ray) - unit_radius_squared
     discriminant = b**2 - 4 * a * c
     return [] if discriminant < 0

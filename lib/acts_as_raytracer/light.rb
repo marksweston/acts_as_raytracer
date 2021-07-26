@@ -1,5 +1,5 @@
 class Light
-  def initialize(position:, intensity: Colour.new(red: 1, green: 1, blue: 1))
+  def initialize(position:, intensity: Colour.white)
     @position = position
     @intensity = intensity
   end
@@ -24,9 +24,9 @@ class Light
       specular = Colour.black
     else
       diffuse = effective_colour * object.material.diffuse_reflection * light_dot_normal
-      reflection = object.reflect(incoming_ray: ray.direction, intersection: point)
-      # reversing the ray direction otherwise the angle to the reflection is always > 90'
-      reflect_dot_ray = reflection.dot_product(-ray.direction)
+      reflection = object.reflect(incoming_ray: ray.vector, intersection: point)
+      # reversing the ray vector otherwise the angle to the reflection is always > 90'
+      reflect_dot_ray = reflection.dot_product(-ray.vector)
       if reflect_dot_ray <= 0
         specular = Colour.black
       else
@@ -37,7 +37,7 @@ class Light
   end
 
   private def point_in_shadow?(point, light_vector, distance_to_light, world)
-    shadow_ray = Ray.new(origin: point, direction: light_vector.normalise)
+    shadow_ray = Ray.new(origin: point, vector: light_vector.normalise)
     shadow_intersections = shadow_ray.trace(objects: world.objects)
     return shadow_intersections.select{ |intersection| intersection.t < distance_to_light }.count > 0
   end

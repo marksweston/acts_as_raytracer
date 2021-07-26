@@ -3,6 +3,10 @@ class Colour
     return new(red: 0, green: 0, blue: 0)
   end
 
+  def self.white
+    return new(red: 1, green: 1, blue: 1)
+  end
+
   def initialize(red:, green:, blue:)
     @red = red
     @green = green
@@ -12,9 +16,9 @@ class Colour
   attr_reader :red, :green, :blue
 
   def ==(other_colour)
-    red.round(epsilon) == other_colour.red.round(epsilon) and
-    green.round(epsilon) == other_colour.green.round(epsilon) and
-    blue.round(epsilon) == other_colour.blue.round(epsilon)
+    red.round(8) == other_colour.red.round(8) and
+    green.round(8) == other_colour.green.round(8) and
+    blue.round(8) == other_colour.blue.round(8)
   end
 
   def +(other_colour)
@@ -34,7 +38,6 @@ class Colour
   end
 
   def *(scalar)
-    binding.pry if scalar.nil?
     return Colour.new(
       red: red * scalar,
       green: green * scalar,

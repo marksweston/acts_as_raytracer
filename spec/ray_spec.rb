@@ -1,24 +1,24 @@
 RSpec.describe Ray do
   describe "Rays can be transformed" do
-    it "translates the origin but not the direction" do
-      ray = Ray.new(origin: Point.new(1 ,2 ,3), direction: Vector.new(0, 1, 0))
+    it "translates the origin but not the vector" do
+      ray = Ray.new(origin: Point.new(1 ,2 ,3), vector: Vector.new(0, 1, 0))
       translation = Transform::Translation.new(x: 1, y: 2, z: 3)
       new_ray = ray.transform(matrix: translation)
       expect(new_ray.origin).to eq Point.new(2 ,4 ,6)
-      expect(new_ray.direction).to eq Vector.new(0, 1, 0)
+      expect(new_ray.vector).to eq Vector.new(0, 1, 0)
     end
 
-    it "scales both origin and direction" do
-      ray = Ray.new(origin: Point.new(1 ,2 ,3), direction: Vector.new(0, 1, 0))
+    it "scales both origin and vector" do
+      ray = Ray.new(origin: Point.new(1 ,2 ,3), vector: Vector.new(0, 1, 0))
       translation = Transform::Scaling.new(x: 1, y: 2, z: 3)
       new_ray = ray.transform(matrix: translation)
       expect(new_ray.origin).to eq Point.new(1 ,4 ,9)
-      expect(new_ray.direction).to eq Vector.new(0, 2, 0)
+      expect(new_ray.vector).to eq Vector.new(0, 2, 0)
     end
   end
 
   describe "A ray will #trace its path through a collection of objects and return a collection of intersections" do
-    let(:ray) { Ray.new(origin: Point.new(0, 0, 0), direction: Vector.new(0, -1, 0)) }
+    let(:ray) { Ray.new(origin: Point.new(0, 0, 0), vector: Vector.new(0, -1, 0)) }
 
     it "returns an empty collection when there are no objects passed to it" do
       expect(ray.trace(objects: [])).to eq []

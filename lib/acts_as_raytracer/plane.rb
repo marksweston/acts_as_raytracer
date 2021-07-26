@@ -9,9 +9,9 @@ class Plane < Shape
   end
 
   def intersect(ray:)
-    return [] if object_space(ray).direction.y.round(epsilon).zero?
+    return [] if object_space(ray).vector.y.round(epsilon).zero?
 
-    t = (-object_space(ray).origin.y) / object_space(ray).direction.y
+    t = (-object_space(ray).origin.y) / object_space(ray).vector.y
     if t > 0
       return [Intersection.new(t: t, object: self)]
     else

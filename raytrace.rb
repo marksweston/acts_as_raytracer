@@ -20,13 +20,13 @@ world = World.new(
             .scale(x: 0.5, y: 0.75, z: 0.75)
             .translate(x: 0, y: 1, z: 3),
     ],
-    light: Light.new(position: Point.new(0 , 1, -10))
+    light: Light.new(position: Point.new(0 , 1, -1))
 )
 
 camera = Camera.new(
     position: Point.new(0,0,0),
-    x_resolution: 300,
-    y_resolution: 300
+    x_resolution: 1000,
+    y_resolution: 1000
 )
 
 camera.shoot!(world: world)
