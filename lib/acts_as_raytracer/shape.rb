@@ -1,23 +1,23 @@
 class Shape
+
   def initialize(colour: Colour.new(red: 0, green: 0, blue: 0), material: nil)
     @colour = colour
     @transforms = []
-    @material = material
+    @material = material || Material.new
   end
 
-  attr_reader :colour, :transforms
-
-  def self.default_material
-    return Material.new(
-      ambient: 0.15,
-      diffuse_reflection: 0.9,
-      specular_reflection: 0.9,
-      shininess: 20
-    )
-  end
+  attr_reader :transforms, :material
 
   protected def object_space_origin
     return Point.new(0, 0, 0)
+  end
+
+  def colour(at_point:)
+    if material.pattern
+      return material.pattern.at(point: at_point)
+    else
+      return @colour
+    end
   end
 
   def scale(x:, y:, z:)
@@ -57,9 +57,5 @@ class Shape
   def reflect(incoming_ray:, intersection:)
     normal = normal_at(intersect: intersection)
     return incoming_ray - normal * 2 * incoming_ray.dot_product(normal)
-  end
-
-  def material
-    return @material ||= self.class.default_material
   end
 end

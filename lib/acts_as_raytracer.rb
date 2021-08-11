@@ -29,5 +29,6 @@ require_relative 'acts_as_raytracer/rotation'
 require_relative 'acts_as_raytracer/skew'
 require_relative 'acts_as_raytracer/intersection'
 require_relative 'acts_as_raytracer/material'
+require_relative 'acts_as_raytracer/stripe_pattern'
 
 
