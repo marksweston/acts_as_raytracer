@@ -14,14 +14,21 @@ world = World.new(
             .translate(x: 0, y: -1, z: 0),
         Sphere.new(colour: Colour.new(red: 1, green: 0, blue: 0))
             .scale(x: 0.5, y: 0.2, z: 1.5)
-            .translate(x: 1.5, y: 0.5, z: 3),
+            .translate(x: 1.5, y: 1, z: 3),
+        Sphere.new(colour: Colour.new(red: 1, green: 0.843, blue: 0),
+                   material: Material.new(ambient: 0.15,
+                                          diffuse_reflection: 1.2,
+                                          specular_reflection: 0.9,
+                                          shininess: 10))
+            .translate(x: 0.5, y: -0.5, z: 2),
         Sphere.new(colour: Colour.new(red: 0, green: 1, blue: 0),
                    material: Material.new(ambient: 0.15,
                                           diffuse_reflection: 0.9,
                                           specular_reflection: 0.3,
                                           shininess: 5,
                                           pattern: StripePattern.new(Colour.new(red: 0, green: 1, blue: 0),
-                                                                     Colour.new(red: 0, green: 0.5, blue: 0))))
+                                                                     Colour.new(red: 0, green: 0.5, blue: 0),
+                                                                     transform: Transform::Scaling.new(x: 0.25, y: 0.25, z:0.25))))
             .scale(x: 1.5, y: 1.5, z: 1.5)
             .translate(x: -1, y: 1, z: 3),
     ],
@@ -36,3 +43,4 @@ camera = Camera.new(
 
 camera.shoot!(world: world)
 
+#

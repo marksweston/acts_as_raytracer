@@ -14,7 +14,7 @@ class Shape
 
   def colour(at_point:)
     if material.pattern
-      return material.pattern.at(point: at_point)
+      return material.pattern.at_object(object: self, point: at_point)
     else
       return @colour
     end

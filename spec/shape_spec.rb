@@ -15,7 +15,7 @@ RSpec.describe Shape do
 
       it "returns the colour based on the pattern at that point" do
         point = Point.new(0,0,0)
-        expect(pattern).to receive(:at).with(point: point).and_return Colour.white
+        expect(pattern).to receive(:at_object).with(object: shape, point: point).and_return Colour.white
 
         shape.colour(at_point: point)
       end
