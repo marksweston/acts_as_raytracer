@@ -1,7 +1,6 @@
 class Shape
 
-  def initialize(colour: Colour.new(red: 0, green: 0, blue: 0), material: nil)
-    @colour = colour
+  def initialize(material: nil)
     @transforms = []
     @material = material || Material.new
   end
@@ -13,11 +12,7 @@ class Shape
   end
 
   def colour(at_point:)
-    if material.pattern
-      return material.pattern.at_object(object: self, point: at_point)
-    else
-      return @colour
-    end
+    return material.colour(object_space_point: object_space(at_point))
   end
 
   def scale(x:, y:, z:)

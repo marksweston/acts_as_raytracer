@@ -15,9 +15,8 @@ class StripePattern
     end
   end
 
-  def at_object(object:, point:)
-    point_in_object_space = object.combined_transform.inverse * point
-    point_in_pattern_space = self.transform.inverse * point_in_object_space
+  def colour_at(object_space_point:)
+    point_in_pattern_space = self.transform.inverse * object_space_point
 
     return self.at(point: point_in_pattern_space)
   end

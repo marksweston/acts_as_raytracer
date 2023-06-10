@@ -12,17 +12,17 @@ world = World.new(
             .translate(x: 0, y: 0, z: 7),
         Plane.new(material: Material.new(pattern: StripePattern.new(Colour.white, Colour.black)))
             .translate(x: 0, y: -1, z: 0),
-        Sphere.new(colour: Colour.new(red: 1, green: 0, blue: 0))
+        Sphere.new(material: Material.new(colour: Colour.new(red: 1, green: 0, blue: 0)))
             .scale(x: 0.5, y: 0.2, z: 1.5)
             .translate(x: 1.5, y: 1, z: 3),
-        Sphere.new(colour: Colour.new(red: 1, green: 0.843, blue: 0),
-                   material: Material.new(ambient: 0.15,
+        Sphere.new(material: Material.new(colour: Colour.new(red: 1, green: 0.843, blue: 0),
+                                          ambient: 0.15,
                                           diffuse_reflection: 1.2,
                                           specular_reflection: 0.9,
                                           shininess: 10))
             .translate(x: 0.5, y: -0.5, z: 2),
-        Sphere.new(colour: Colour.new(red: 0, green: 1, blue: 0),
-                   material: Material.new(ambient: 0.15,
+        Sphere.new(material: Material.new(colour: Colour.new(red: 0, green: 1, blue: 0),
+                                          ambient: 0.15,
                                           diffuse_reflection: 0.9,
                                           specular_reflection: 0.3,
                                           shininess: 5,

@@ -1,8 +1,13 @@
 RSpec.describe World do
   describe "it #illuminates every ray hit" do
     # a white plane perpendicular to the eye direction with the light directly behind the eye.
-    let(:plane_material) { Material.new(ambient: 0.1, diffuse_reflection: 0.9, specular_reflection: 0.9, shininess: 100) }
-    let(:plane) { Plane.new(colour: Colour.new(red: 1, green: 1, blue: 1), material: plane_material) }
+    let(:plane_material) do Material.new(colour: Colour.new(red: 1, green: 1, blue: 1),
+                                        ambient: 0.1,
+                                        diffuse_reflection: 0.9,
+                                        specular_reflection: 0.9,
+                                        shininess: 100)
+    end
+    let(:plane) { Plane.new(material: plane_material) }
     let(:world) do World.new(
       objects: [ plane.rotate(axis: :x, angle: -Math::PI / 2).translate(x: 0, y: 0, z: 1) ],
       light: light)
