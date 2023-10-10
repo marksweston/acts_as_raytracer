@@ -43,4 +43,3 @@ camera = Camera.new(
 
 camera.shoot!(world: world)
 
-#

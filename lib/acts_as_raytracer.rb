@@ -2,6 +2,8 @@ require 'chunky_png'
 require 'pry-byebug'
 require 'forwardable'
 require 'rmath3d/rmath3d'
+require 'psych'
+
 include RMath3D
 
 def epsilon
