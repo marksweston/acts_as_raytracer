@@ -1,5 +1,5 @@
 class StripePattern
-  def initialize(first_colour, second_colour, transform: Transform::Identity.new)
+  def initialize(first_colour, second_colour, transform = Transform::Identity.new)
     @first_colour = first_colour
     @second_colour = second_colour
     @transform = transform
