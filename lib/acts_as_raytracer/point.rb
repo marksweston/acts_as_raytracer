@@ -3,19 +3,17 @@ class Point
     @x = x
     @y = y
     @z = z
+    freeze
   end
 
-  attr_accessor :x, :y, :z
+  attr_reader :x, :y, :z
 
   def to_v
     return Vector.new(x, y, z)
   end
 
-  def move!(vector:)
-    self.x = self.x + vector.x
-    self.y = self.y + vector.y
-    self.z = self.z + vector.z
-    return self
+  def move(vector:)
+    return Point.new(self.x + vector.x, self.y + vector.y, self.z + vector.z)
   end
 
   def weighting

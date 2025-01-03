@@ -3,9 +3,10 @@ class Vector
     @x = x
     @y = y
     @z = z
+    freeze
   end
 
-  attr_accessor :x, :y, :z
+  attr_reader :x, :y, :z
 
   def dot_product(other_vector)
     return x * other_vector.x + y * other_vector.y + z * other_vector.z
