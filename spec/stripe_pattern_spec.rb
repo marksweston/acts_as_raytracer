@@ -39,7 +39,7 @@ RSpec.describe StripePattern do
 
     describe "effects of transformations on patterns" do
       describe "#at_object returns the colour for this stripe pattern as modified by a pattern transformation" do
-        let(:scaled_stripe) { StripePattern.new(Colour.white, Colour.black, transform: Transform::Scaling.new(x: 2, y: 2, z:2)) }
+        let(:scaled_stripe) { StripePattern.new(Colour.white, Colour.black, Transform::Scaling.new(x: 2, y: 2, z:2)) }
         let(:object) {Sphere.new(material: Material.new(pattern: scaled_stripe))}
 
         it "returns white when the stripe is transformed" do
