@@ -22,7 +22,7 @@ class World
   def illuminate(ray:, object:, intersection_point:)
     normal = object.normal_at(intersect: intersection_point)
     # move the intersection a small amount "up" to fix "acne" effects due to floating point rounding errors
-    over_point = intersection_point.move!(vector: normal * 0.00000001)
+    over_point = intersection_point.move(vector: normal * 0.00000001)
     effective_colour = object.colour(at_point: intersection_point).product(self.light.intensity)
 
     light_vector = (light.position.to_v - over_point.to_v).normalise
