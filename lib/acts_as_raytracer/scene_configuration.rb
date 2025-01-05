@@ -72,11 +72,22 @@ class SceneConfiguration
   def create_pattern(pattern_type, pattern_config)
     return nil unless pattern_config
 
-    StripePattern.new(
-      create_colour(pattern_config["first_colour"]),
-      create_colour(pattern_config["second_colour"]),
-      create_transform(pattern_config["transform"])
-    )
+    case pattern_type
+    when "stripe"
+      StripePattern.new(
+        first_colour: create_colour(pattern_config["first_colour"]),
+        second_colour: create_colour(pattern_config["second_colour"]),
+        transform: create_transform(pattern_config["transform"])
+      )
+    when "gradient"
+      GradientPattern.new(
+        first_colour: create_colour(pattern_config["first_colour"]),
+        second_colour: create_colour(pattern_config["second_colour"]),
+        transform: create_transform(pattern_config["transform"])
+      )
+    else
+      raise "Unknown pattern type: #{pattern_type}"
+    end
   end
 
   def create_transform(transform_config)

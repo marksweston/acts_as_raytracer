@@ -31,6 +31,8 @@ require_relative 'acts_as_raytracer/rotation'
 require_relative 'acts_as_raytracer/skew'
 require_relative 'acts_as_raytracer/intersection'
 require_relative 'acts_as_raytracer/material'
+require_relative 'acts_as_raytracer/pattern'
+require_relative 'acts_as_raytracer/gradient_pattern'
 require_relative 'acts_as_raytracer/stripe_pattern'
 require_relative 'acts_as_raytracer/scene_configuration'
 

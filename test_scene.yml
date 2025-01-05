@@ -7,13 +7,18 @@ stripe_pattern: &stripe_pattern
 world:
   light: { position: [0, 1, -1] }
   objects:
-    # First striped plane
+    # left vertical plane
     - plane:
         material:
           pattern: 
             stripe:
               first_colour: { red: 1, green: 1, blue: 1 }
               second_colour: { red: 0, green: 0, blue: 0 }
+            # gradient:
+            #   first_colour: { red: 0, green: 1, blue: 0 }
+            #   second_colour: { red: 0, green: 0, blue: 0 }
+            #   transform:
+            #     scale: { x: 5, y: 5, z: 5 }
         transforms:
           - rotate: { axis: x, angle: -0.5 }
           - rotate: { axis: y, angle: -0.25 }
@@ -58,7 +63,6 @@ world:
           specular_reflection: 0.9
         transforms:
           - translate: { x: 0.5, y: -0.5, z: 2 }
-    
     # Green striped sphere
     - sphere:
         material:
@@ -68,13 +72,14 @@ world:
           specular_reflection: 0.3
           shininess: 5
           pattern:
-            stripe_pattern:
+            stripe:
               first_colour: { red: 0, green: 1, blue: 0 }
               second_colour: { red: 0, green: 0.5, blue: 0 }
-              transform:
-                scale: { x: 0.25, y: 0.25, z: 0.25 }
+              # transform:
+              #   scale: { x: 0.25, y: 0.25, z: 0.25 }
         transforms:
+          - rotate: { axis: z, angle: 0.5 }
           - scale: { x: 1.5, y: 1.5, z: 1.5 }
           - translate: { x: -1, y: 1, z: 3 }
 
-camera: { position: [0, 0, 0], x_resolution: 1000, y_resolution: 1000 }
+camera: { position: [0, 0, 0], x_resolution: 300, y_resolution: 300 }

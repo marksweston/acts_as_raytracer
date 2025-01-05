@@ -1,6 +1,6 @@
 RSpec.describe StripePattern do
   describe "A stripe pattern determines the colour of an object based on the value of the x co-ordinate of the hit point" do
-    let(:stripe) { StripePattern.new(Colour.white, Colour.black) }
+    let(:stripe) { StripePattern.new(first_colour: Colour.white, second_colour: Colour.black) }
     describe "#at returns the colour at a particular x, y, z co-ordinate" do
       describe "the stripe pattern returns a constant colour on the y axis" do
         it "always returns white if x = 0, whatever the y co-ordinate" do
@@ -39,8 +39,14 @@ RSpec.describe StripePattern do
 
     describe "effects of transformations on patterns" do
       describe "#at_object returns the colour for this stripe pattern as modified by a pattern transformation" do
-        let(:scaled_stripe) { StripePattern.new(Colour.white, Colour.black, Transform::Scaling.new(x: 2, y: 2, z:2)) }
-        let(:object) {Sphere.new(material: Material.new(pattern: scaled_stripe))}
+        let(:scaled_stripe) do
+          StripePattern.new(
+            first_colour: Colour.white,
+            second_colour: Colour.black,
+            transform: Transform::Scaling.new(x: 2, y: 2, z: 2)
+          )
+        end
+        let(:object) { Sphere.new(material: Material.new(pattern: scaled_stripe)) }
 
         it "returns white when the stripe is transformed" do
           point = Point.new(1.5, 0, 0)

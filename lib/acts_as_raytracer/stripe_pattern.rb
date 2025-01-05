@@ -1,11 +1,11 @@
-class StripePattern
-  def initialize(first_colour, second_colour, transform = Transform::Identity.new)
+class StripePattern < Pattern
+  def initialize(first_colour:, second_colour:, transform: nil)
+    super(transform)
     @first_colour = first_colour
     @second_colour = second_colour
-    @transform = transform
   end
 
-  attr_reader :first_colour, :second_colour, :transform
+  attr_reader :first_colour, :second_colour
 
   def at(point:)
     if point.x % 2 < 1
@@ -13,11 +13,5 @@ class StripePattern
     else
       return second_colour
     end
-  end
-
-  def colour_at(object_space_point:)
-    point_in_pattern_space = self.transform.inverse * object_space_point
-
-    return self.at(point: point_in_pattern_space)
   end
 end
